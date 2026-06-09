@@ -1,18 +1,4 @@
-"""
-detect.py — Real-time anomaly detection demo
-=============================================
-Simulates a live event stream mixing normal and attack scenarios,
-then runs the Poisson detector and prints a SIEM-style alert report.
 
-Attack scenarios modelled:
-  A1 — Brute-force login spike (user_bob,  login, 40×  normal)
-  A2 — Data exfiltration burst  (user_alice, file_access, 20× normal)
-  A3 — API key abuse             (user_bob,  api_call,    15× normal)
-  A4 — Credential stuffing       (user_dave, login,       30× normal)
-
-Usage:
-    python detect.py
-"""
 
 import random
 from datetime import datetime, timedelta
