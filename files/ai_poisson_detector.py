@@ -1,16 +1,4 @@
-"""
-AI-Powered Poisson-Based Anomaly Detector for SIEM Systems
-===========================================================
-Models normal user event rates using Poisson distribution,
-then flags statistically unusual behaviour via right-tailed p-value tests.
 
-Architecture mirrors the repo's pipeline pattern:
-  train → model user baselines
-  detect_anomaly → real-time flagging
-  update_lambda_online → exponential-smoothing adaptation
-
-Author : Ritika-Sorout/AI-Poisson-detector-
-"""
 
 from __future__ import annotations
 
