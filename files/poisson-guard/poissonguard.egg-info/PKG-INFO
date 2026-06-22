@@ -1,0 +1,63 @@
+Metadata-Version: 2.4
+Name: poissonguard
+Version: 0.1.0
+Summary: Poisson-process anomaly detector hardened against adversarial baseline poisoning.
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: numpy>=1.26
+Requires-Dist: scipy>=1.11
+Requires-Dist: fastapi>=0.110
+Requires-Dist: uvicorn>=0.29
+Requires-Dist: pydantic>=2.6
+Provides-Extra: dev
+Requires-Dist: pytest>=8.0; extra == "dev"
+
+# PoissonGuard
+
+A behavioral anomaly detector that models per-entity event rates as **Poisson
+processes** and is explicitly **hardened against adversarial baseline poisoning**
+("boil-the-frog" slow-drift attacks).
+
+Most rate-based detectors silently re-learn their own baseline from recent
+traffic. An attacker who ramps activity slowly enough can drag the baseline up
+until their target rate looks "normal." PoissonGuard's centerpiece is a
+**drift-integrity gate** that distinguishes benign regime changes from
+adversarial slow poisoning and refuses to absorb the latter into the baseline.
+
+## What it does
+
+For each `(entity, event_type)` window of timestamped events, PoissonGuard:
+
+1. **Bayes rate** — Gamma-Poisson posterior over the rate; predictive p-value
+   for the observed count vs. the learned baseline.
+2. **Shape tests** — Fano factor (dispersion) and an inter-arrival
+   exponentiality (KS) test to catch bursty/regular processes that match the
+   *count* but not the *shape* of a Poisson process.
+3. **Drift gate** — Page-Hinkley + slow-drift CUSUM decide whether to accept,
+   freeze, or flag a baseline update, defeating poisoning.
+4. **Fusion** — Fisher's method combines the sub-test p-values; a hierarchical
+   empirical-Bayes prior stabilizes sparse entities.
+5. **Bucketing** — diurnal (business / off-hours) splitting removes the
+   calendar-span dilution bias that plagues naive rate estimators.
+
+## Layout
+
+```
+poissonguard/   core library (schemas, bayes_rate, shape_tests, drift_guard,
+                fusion, bucketing, detector, legacy, generators, serving)
+scripts/        train.py, detect.py, evaluate.py
+tests/          pytest suite (one file per module)
+```
+
+## Quickstart
+
+```bash
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+pip install -e .
+
+python scripts/train.py    --out artifacts/baselines.json
+python scripts/detect.py   --baselines artifacts/baselines.json
+python scripts/evaluate.py --baselines artifacts/baselines.json
+uvicorn poissonguard.serving:app --reload
+```

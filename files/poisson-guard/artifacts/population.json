@@ -1,0 +1,74 @@
+[
+  {
+    "entity": "entity_00",
+    "event_type": "login",
+    "business_rate": 5.821770123928726,
+    "offhours_rate": 0.06282544920093644
+  },
+  {
+    "entity": "entity_01",
+    "event_type": "api_call",
+    "business_rate": 2.2458411436171684,
+    "offhours_rate": 0.001484737755067181
+  },
+  {
+    "entity": "entity_02",
+    "event_type": "download",
+    "business_rate": 6.879621435201635,
+    "offhours_rate": 0.2511765133815863
+  },
+  {
+    "entity": "entity_03",
+    "event_type": "login",
+    "business_rate": 5.639814654603079,
+    "offhours_rate": 0.16456901580480413
+  },
+  {
+    "entity": "entity_04",
+    "event_type": "api_call",
+    "business_rate": 5.261749948792537,
+    "offhours_rate": 0.19680469111930413
+  },
+  {
+    "entity": "entity_05",
+    "event_type": "download",
+    "business_rate": 6.8951213247291925,
+    "offhours_rate": 0.000755291636838506
+  },
+  {
+    "entity": "entity_06",
+    "event_type": "login",
+    "business_rate": 7.144425659525416,
+    "offhours_rate": 0.009597985840091309
+  },
+  {
+    "entity": "entity_07",
+    "event_type": "api_call",
+    "business_rate": 6.377932678579665,
+    "offhours_rate": 0.0448127889126901
+  },
+  {
+    "entity": "entity_08",
+    "event_type": "download",
+    "business_rate": 7.179073534099319,
+    "offhours_rate": 0.15548759664125508
+  },
+  {
+    "entity": "entity_09",
+    "event_type": "login",
+    "business_rate": 3.7982713432243087,
+    "offhours_rate": 0.06421923037688722
+  },
+  {
+    "entity": "entity_10",
+    "event_type": "api_call",
+    "business_rate": 2.169918026872778,
+    "offhours_rate": 0.010787380884608707
+  },
+  {
+    "entity": "entity_11",
+    "event_type": "download",
+    "business_rate": 6.023746488161782,
+    "offhours_rate": 0.15594022190082113
+  }
+]
